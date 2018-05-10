@@ -1,0 +1,15 @@
+/*
+!/aoikconsulwatcher
+!/docker
+!/dumb-init
+!/nginx
+!/runit
+!/.gitignore
+!/LICENSE.txt
+!/README.md
+!/README.src.md
+*.cache
+*.egg-info
+*.pyc
+__pycache__
+.pytest_cache

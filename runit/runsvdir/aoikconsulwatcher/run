@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [ -z "$TEMPLATE_FILE_PATH" ]; then
+    export TEMPLATE_FILE_PATH='/opt/aoikconsulwatchernginx/nginx/nginx_sites.conf.template'
+fi
+
+exec python /opt/aoikconsulwatchernginx/aoikconsulwatcher/src/aoikconsulwatcher/__main__.py --config /opt/aoikconsulwatchernginx/aoikconsulwatcher/conf/config.py

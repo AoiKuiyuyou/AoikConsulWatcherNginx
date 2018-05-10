@@ -1,0 +1,2 @@
+jinja2==2.10
+python-consul==0.7.2

@@ -1,0 +1,11 @@
+version: '2'
+services:
+  aoikconsulwatchernginx:
+    image: aoikuiyuyou/aoikconsulwatchernginx
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - SERVICE_NAME=aoikconsulwatchernginx
+      - CONSUL_HOST=127.0.0.1
+      - CONSUL_PORT=8500

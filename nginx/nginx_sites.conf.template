@@ -1,0 +1,26 @@
+{% for service_name in service_infos %}
+{% set service_info = service_infos[service_name] %}
+{% set nginx_config = service_info['nginx_config'] %}
+upstream {{nginx_config['upstream_name']}} {
+    {% for node in service_infos[service_name]['nodes'] %}
+    server {{node['ServiceAddress']}}:{{node['ServicePort']}};
+    {% endfor %}
+}
+
+server {
+    listen {{nginx_config['listen_port']}};
+
+    server_name {{nginx_config['server_name']}};
+
+    root /dev/null;
+
+    location / {
+        proxy_redirect off;
+        proxy_pass_header Server;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_pass http://{{nginx_config['upstream_name']}}/;
+    }
+}
+{% endfor %}
